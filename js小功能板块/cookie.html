@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+   
+
+    <style type="text/css">
+       li{
+        display: none;
+       }
+    </style>
+</head>
+<body>
+<div>
+  
+</div>
+<div id="btns">
+    <input type="text" id="inputv" name="" placeholder="搜索.....">
+    <a href="">点击跳转</a>
+    <ul >
+        <li>ge</li>
+        <li>gej</li>
+        <li>nv</li>
+        <li>nvsh</li>
+        <li>gejin</li>
+    </ul>
+    <p id="a-test"></p>
+</div>
+<script type="text/javascript">
+    
+
+</script>
+<script type="text/javascript">
+    
+    //我自己写的方法：
+var cookie = {
+        setCookie:function (name,value,time) {
+            document.cookie = name + "=" + value + ";expires=Thu, 18 Dec 2019 12:00:00 GMT";  //分号后面是设定cookie失效时间，如果是过去的时间，则cookie无效，也相当于删除
+        },
+        getCookie:function(name){
+            var cookieStr = document.cookie.replace(/\s+/g,"");  //清楚空格
+            var str = cookieStr.split(";");        //将cookie分割成数组
+            console.log(typeof str);        //object
+            for(var i = 0;i < str.length;i++){
+                var newStr = str[i].split("=");
+                if(newStr[0] == name){    
+                    return newStr[1];
+                }
+            }
+        }
+    }
+    cookie.setCookie("jian","tianwen");
+    cookie.setCookie("name","剑圣");
+    console.log(cookie.getCookie("name"))   //xiao
+
+/*别人封装的：
+
+        封装的cookie方法，可以设置cookie内容和时间
+    
+    var cookie = {
+        set:function(key,val,time){//设置cookie方法
+            var date=new Date(); //获取当前时间
+            var expiresDays=time;  //将date设置为n天以后的时间
+            date.setTime(date.getTime()+expiresDays*24*3600*1000); //格式化为cookie识别的时间
+            document.cookie=key + "=" + escape(val) +";expires="+date.toGMTString();  //设置cookie
+        },
+        get:function(key){//获取cookie方法
+            //获取cookie参数
+            var getCookie = document.cookie.replace(/[ ]/g,"");  //获取cookie，并且将获得的cookie格式化，去掉空格字符
+            var arrCookie = getCookie.split(";")  //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
+            var tips;  //声明变量tips
+            for(var i=0;i<arrCookie.length;i++){   //使用for循环查找cookie中的tips变量
+                var arr=arrCookie[i].split("=");   //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
+                if(key==arr[0]){  //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
+                    tips=arr[1];   //将cookie的值赋给变量tips
+                    break;   //终止for循环遍历
+                }
+            }
+            return unescape(tips);
+        }
+    }
+    cookie.set('key','value,中文也可以的',30)  //30天后失效
+    console.log(cookie.get('key'));   // value,中文也可以的)
+*/
+</script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+   
+
+    <style type="text/css">
+       li{
+        display: none;
+       }
+    </style>
+</head>
+<body>
+<div>
+  
+</div>
+<div id="btns">
+    <input type="text" id="inputv" name="" placeholder="搜索.....">
+    <a href="">点击跳转</a>
+    <ul >
+        <li>ge</li>
+        <li>gej</li>
+        <li>nv</li>
+        <li>nvsh</li>
+        <li>gejin</li>
+    </ul>
+    <p id="a-test"></p>
+</div>
+<script type="text/javascript">
+    
+
+</script>
+<script type="text/javascript">
+    
+    
+方法：HTML5本地存储，即在A页面存储数据，然后在B页面获取
+localStorage存储的数据，localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。
+http://www.w3school.com.cn/html5/html_5_webstorage.asp
+//A页面
+方法一：   
+// Check browser support
+    if (typeof(Storage) !== "undefined") {
+        // Store
+        localStorage.setItem("lastname", "Gates");   
+        // Retrieve
+        document.getElementById("test").innerHTML = localStorage.getItem("lastname");
+    } else {
+        document.getElementById("test").innerHTML = "抱歉！您的浏览器不支持 Web Storage ...";
+    }
+方法二：
+    localStorage['foo'] = 'newBar';
+方法三：
+    sessionStorage.setItem('testKey','这是一个测试的value值'); // 存入一个值   
+//B页面
+方法一：
+    document.getElementById("a-test").innerHTML = localStorage.getItem("lastname");     
+方法二：  
+ localStorage["foo"]
+方法三：
+            console.log(sessionStorage.getItem('testKey')); // => 返回testKey对应的值);    关闭浏览器后再打开，数据会被删除，所以控制台输出的null,需要重新打开A页面，再刷新B页面，控制台输出这是一个测试的value值
+输出结果：
+console.log(localStorage.getItem("foo"));  //newBar
+        console.log(localStorage["foo"]);  //谷歌浏览器：newBar  360、IE浏览器：null
+
+</script>
+</body>
+</html>
+
+
+
+
+

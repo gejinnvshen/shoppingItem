@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue shopping cart</title>
+    <style type="text/css">
+        body{
+            background: #fff;
+        }
+        .left{width: 375px;} .right{width: 375px;}
+        li img{width: 20%;height: 100%;} .active{color: blue;}
+        .tab-wrap,.filter-bar{display: flex;} 
+        li{list-style: none; display: flex;}
+        p em{color: red} p{position: relative;}
+        .add{position: absolute;right: 15px; width: 32px;height: 22px;line-height:22px;border-radius:11px;background-color: #7a45e5;text-align: center;color: #fff;}
+        .setWidth{width: 100%;}
+        #tabCate{display: flex;} #right img{width: 20%;}  .addNum{font-size:30px;color: red;}
+    </style>
+</head>
+
+<body>
+    <div id="tabCate">
+        <div class="left">
+            <h3>商品列表</h3>
+            <div >
+                <ul class="tab-wrap">
+                    <li v-for="(item,index) in items" v-bind:class="{active:index == cateindexs}" v-on:click="getIndex(index)">
+                        {{item.message}}--{{index}}
+                    </li>
+                </ul>
+                <ul class="filter-bar">
+                    <li class="sort" v-for="(filter,index) in filters" v-bind:class="{active:index == sortIndex}" v-on:click="defaultSort(index)">
+                       {{filter.message}}
+                    </li>    
+                </ul>
+                <div>
+                    <li v-for="(item,index) in extraLists" >
+                        <img v-bind:src="item.img">
+                        <div class="setWidth" v-if="true">{{item.name}}</div>
+                        <div class="setWidth">
+                            <p>￥<em>{{item.price}}</em></p> <br/>
+                            <p><em>{{item.sales}}</em>人付款<span class="add" v-on:click="addItem(index)">+</span></p>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <div id="right">
+            <h3>购物列表<span>编辑</span></h3>
+            <div v-for="(item,index) in purchase">
+                <img v-bind:src="item.img">
+                    <div class="setWidth" v-if="true">{{item.name}}</div>
+                    <div class="setWidth">
+                        <p>￥<em>{{item.price}}</em></p> <br/>
+                        <p>库存件</p>
+                        <p><span class="addNum" v-bind:class="{active:index == cateindexs}" v-on:click="increaseGoods(index)">+</span><span >{{item.count}}</span><span class="addNum" v-bind:class="{active:index == cateindexs}" v-on:click="decreGoods(index)">-</span></p>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+    <a href="tel:13691748312">13691748312</a>
+    <script src="vue.js"></script>
+    <script src="myapp.js"></script>
+</body>
+
+
+</html>
+
+<!-- function objectSort(property, desc) {
+    //降序排列
+    if (desc) {
+        return function (a, b) {
+            return (a[property] >  b[property]) ? -1 : (a[property] <  b[property]) ? 1 : 0;
+        }   
+    }
+    return function (a, b) {
+        return (a[property] <  b[property]) ? -1 : (a[property] >  b[property]) ? 1 : 0;
+    }
+}
+
+var myArray = [
+  { "name": "John Doe", "age": 29 }, 
+  { "name": "Anna Smith", "age": 24 }, 
+  { "name": "Peter Jones", "age": 39 }
+]
+
+console.log(myArray.sort(objectSort('name',true)));  -->
